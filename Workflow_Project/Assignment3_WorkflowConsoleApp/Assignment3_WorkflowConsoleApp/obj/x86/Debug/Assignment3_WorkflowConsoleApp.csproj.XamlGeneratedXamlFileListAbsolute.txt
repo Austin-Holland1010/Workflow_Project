@@ -1,0 +1,6 @@
+obj\x86\Debug\Workflow1.g.xaml
+obj\x86\Debug\Assignment3_WorkflowConsoleApp.MyService.IService1.SecretNumber.g.xaml
+obj\x86\Debug\Assignment3_WorkflowConsoleApp.MyService.IService1.checkNumber.g.xaml
+obj\x86\Debug\Assignment3_WorkflowConsoleApp_Workflow1_BeforeInitializeComponentHelper.txt
+obj\x86\Debug\Assignment3_WorkflowConsoleApp.MyService.Activities_SecretNumber_BeforeInitializeComponentHelper.txt
+obj\x86\Debug\Assignment3_WorkflowConsoleApp.MyService.Activities_checkNumber_BeforeInitializeComponentHelper.txt

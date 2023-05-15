@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<local1:Workflow1 xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:local="clr-namespace:Assignment3_WorkflowConsoleApp.MyService.Activities;assembly=Assignment3_WorkflowConsoleApp" xmlns:local1="clr-namespace:Assignment3_WorkflowConsoleApp;assembly=Assignment3_WorkflowConsoleApp" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mca="clr-namespace:Microsoft.CSharp.Activities;assembly=System.Activities" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:p="http://schemas.microsoft.com/netfx/2009/xaml/servicemodel" xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:sc="clr-namespace:System.ComponentModel;assembly=System" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Text</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.CSharp</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.ServiceModel.Activities</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>Assignment3_WorkflowConsoleApp</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <local1:Workflow1.Implementation>
+    <Sequence>
+      <WriteLine Text="Welcome to the Number Gessing Game inplemented using Windows Workflow!" />
+      <WriteLine>
+        <InArgument x:TypeArguments="x:String">
+          <Literal x:TypeArguments="x:String" Value="" />
+        </InArgument>
+      </WriteLine>
+      <WriteLine Text="Please enter a minimum number:" />
+      <Assign>
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:Int32">
+            <mca:CSharpReference x:TypeArguments="x:Int32">Lower</mca:CSharpReference>
+          </OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:Int32">
+            <mca:CSharpValue x:TypeArguments="x:Int32">Int32.Parse(Console.ReadLine());</mca:CSharpValue>
+          </InArgument>
+        </Assign.Value>
+      </Assign>
+      <WriteLine Text="Please enter a maximum number: " />
+      <Assign>
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:Int32">
+            <mca:CSharpReference x:TypeArguments="x:Int32">Upper</mca:CSharpReference>
+          </OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:Int32">
+            <mca:CSharpValue x:TypeArguments="x:Int32">Int32.Parse(Console.ReadLine());</mca:CSharpValue>
+          </InArgument>
+        </Assign.Value>
+      </Assign>
+      <WriteLine>
+        <InArgument x:TypeArguments="x:String">
+          <Literal x:TypeArguments="x:String" Value="" />
+        </InArgument>
+      </WriteLine>
+      <local:SecretNumber mva:VisualBasic.Settings="Assembly references and imported namespaces serialized as XML namespaces">
+        <local:SecretNumber.SecretNumberResult>
+          <OutArgument x:TypeArguments="x:Int32">
+            <mca:CSharpReference x:TypeArguments="x:Int32">SecretNum</mca:CSharpReference>
+          </OutArgument>
+        </local:SecretNumber.SecretNumberResult>
+        <local:SecretNumber.higher>
+          <InArgument x:TypeArguments="x:Int32">
+            <mca:CSharpValue x:TypeArguments="x:Int32">Upper</mca:CSharpValue>
+          </InArgument>
+        </local:SecretNumber.higher>
+        <local:SecretNumber.lower>
+          <InArgument x:TypeArguments="x:Int32">
+            <mca:CSharpValue x:TypeArguments="x:Int32">Lower</mca:CSharpValue>
+          </InArgument>
+        </local:SecretNumber.lower>
+      </local:SecretNumber>
+      <local1:CodeActivity_CheckNumber answer="{x:Null}">
+        <local1:CodeActivity_CheckNumber.SecretNum>
+          <InArgument x:TypeArguments="x:Int32">
+            <mca:CSharpValue x:TypeArguments="x:Int32">SecretNum</mca:CSharpValue>
+          </InArgument>
+        </local1:CodeActivity_CheckNumber.SecretNum>
+      </local1:CodeActivity_CheckNumber>
+      <sads:DebugSymbol.Symbol>9xTSGZ7zrVMV+Ulm02J9UiH9KwYDxYEBQzpcVXNlcnNcQ09EcG9cT25lRHJpdmVcRG9jdW1lbnRzXENTRTQ0NlxBc3NpZ25tZW50M1xBc3NpZ25tZW50M19Xb3JrZmxvd0NvbnNvbGVBcHBcQXNzaWdubWVudDNfV29ya2Zsb3dDb25zb2xlQXBwXFdvcmtmbG93MS54YW1sFzEDcA4CAQEyBTKOAQIBLjMFNxECASw4BThmAgEqOQVEDgIBIUUFRWcCAR9GBVEOAgEWUgVWEQIBFFcFZxoCAQdoBW4nAgECMkMyiwECAS81CTU4AgEtOEM4YwIBK0ELQWgCASY8CzxVAgEiRUNFZAIBIE4LTmgCARtJC0lVAgEXVAlUOAIBFV8LX00CARBkC2RNAgEMWgtaWQIBCGsLa1ECAQM=</sads:DebugSymbol.Symbol>
+    </Sequence>
+  </local1:Workflow1.Implementation>
+</local1:Workflow1>

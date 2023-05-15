@@ -1,0 +1,6 @@
+C:\Users\CODpo\OneDrive\Documents\CSE446\Assignment3\Assignment3_WorkflowConsoleApp\Assignment3_SOAPService\bin\Assignment3_SOAPService.dll.config
+C:\Users\CODpo\OneDrive\Documents\CSE446\Assignment3\Assignment3_WorkflowConsoleApp\Assignment3_SOAPService\bin\Assignment3_SOAPService.dll
+C:\Users\CODpo\OneDrive\Documents\CSE446\Assignment3\Assignment3_WorkflowConsoleApp\Assignment3_SOAPService\bin\Assignment3_SOAPService.pdb
+C:\Users\CODpo\OneDrive\Documents\CSE446\Assignment3\Assignment3_WorkflowConsoleApp\Assignment3_SOAPService\obj\Debug\Assignment3_SOAPService.csproj.CoreCompileInputs.cache
+C:\Users\CODpo\OneDrive\Documents\CSE446\Assignment3\Assignment3_WorkflowConsoleApp\Assignment3_SOAPService\obj\Debug\Assignment3_SOAPService.dll
+C:\Users\CODpo\OneDrive\Documents\CSE446\Assignment3\Assignment3_WorkflowConsoleApp\Assignment3_SOAPService\obj\Debug\Assignment3_SOAPService.pdb

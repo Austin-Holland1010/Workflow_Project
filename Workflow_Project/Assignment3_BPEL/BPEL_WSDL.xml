@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<definitions
+	xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:xs= "http://www.w3.org/2001/XMLschema"
+	xmlns:soapenc="http://schemas.xml.soap.org/soap/encoding/"
+	xmlns ="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:ttr="http://localhost:53938/Service1.svc"
+	xmlns:plnk="http://schemas.xmlsoap.org/ws/2003/05/partner-link/">
+
+	<portType name="clientPT">
+		<operation name ="BPEL_Process">
+			<input message="ProcessRequestMessage"/>
+			<output message="ProcessResposeMessage"/>
+		</operation>
+	</portType>
+
+	<portType name="minimumNumPT">
+		<operation name ="BPEL_Process">
+			<input message="minimumNumRequestMessage" />
+			<output message="minimunNumResponseMessage" />
+		</operation>
+	</portType>
+
+	<portType name="maximunNumPT">
+		<operation name="BPEL_Process">
+			<input message="maximumNumRequestMessage" />
+			<output message="maximumNumResponseMessage" />
+		</operation>
+	</portType>
+
+	<portType name="secretNumSoap">
+		<operation name="SecretNum">
+			<input message="minimumNumRequestMessage"/>
+			<input message="maximumNumRequestMessage"/>
+			<output message="Service1ResponseMessage"/>
+		</operation>
+	</portType>
+
+	<portType name="numberCheckREST">
+		<operation name="numberCheck">
+			<input message="SecretNumInRequestMessage"/>
+			<input message="guessedNumInRequestMessage"/>
+			<output message="answerResponseMessage"/>
+		</operation>
+	</portType>
+
+	<!-- Definitions of the partner link types -->
+	<plnk:partnerLinkType name="clientLT">
+		<plnk:role name="processCall">
+			<plnk:portType name="clientPT"/>
+		</plnk:role>
+	</plnk:partnerLinkType>
+
+	<plnk:partnerLinkType name="service1LT">
+		<plnk:role name="GenerateSecretNum">
+			<plnk:portType name="secretNumSoap"/>
+		</plnk:role>
+	</plnk:partnerLinkType>
+
+	<plnk:partnerLinkType name="service2LT">
+		<plnk:role name="chackGuess">
+			<plnk:portType name="numberCheckREST"/>
+		</plnk:role>
+	</plnk:partnerLinkType>
+</definitions>

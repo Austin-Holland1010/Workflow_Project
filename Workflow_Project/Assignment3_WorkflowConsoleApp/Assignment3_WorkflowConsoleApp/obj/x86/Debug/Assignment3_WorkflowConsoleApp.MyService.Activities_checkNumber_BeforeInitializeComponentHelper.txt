@@ -1,0 +1,2 @@
+Assignment3_WorkflowConsoleApp.MyService.IService1.checkNumber.g.xaml
+XamlStaticHelperNamespace._XamlStaticHelper

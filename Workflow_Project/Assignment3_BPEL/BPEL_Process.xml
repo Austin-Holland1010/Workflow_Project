@@ -1,0 +1,137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<process name="Assignment3_Process"
+		 xmlns="http://schemas.xmlSoap.org/ws/2003/03/business-process/"
+		 xmlns:bpws="http://schemas.xmlsoap.org/ws/2003/03/business-process/"
+		 xmlns:ps="BPEL_WSDL.wsdl">
+
+	<!-- Define Partner Links -->
+	<partnerLinks>
+		<partnerLink name="client"
+					 partnerLinkType="ps: processLT"
+					 myRole="processService"/>
+		<partnerLink name="SecretNum"
+					 partnerLinkType="ps: service1LT"
+					 partnerRole="GenerateSecertNum"/>
+		<partnerLink name="numberCheck"
+					 partnerLinkType="ps: service2LT"
+					 partnerRole="checkGuess"/>
+	</partnerLinks>
+	
+	<!-- Define Variables -->
+	<variables>
+		<!-- Input for the process -->
+		<variable name="minimumNum"
+				  messageType="client:minimumNumInput"/>
+		<variable name="maximumNum"
+				  messageType="client:maximumNumInput"/>
+		<variable name="guessedNum"
+				  messgaeType="client:guessedNumInput"/>
+
+		<!-- Input for service1 -->
+		<variable name="minimumNumIn"
+				  messageType="ps:minimumNumRequestMessage" />
+		<variable name="maximumNumIn"
+				  messageType="ps:maximumNumRequestMessage" />
+			
+		<!-- Output for service1 -->
+		<variable name="SecretNumOut"
+				  messageType="ps:Service1ResponseMessage"/>
+			
+		<!-- Input for service2 -->
+		<variable name="SecretNumIn"
+				  messageType="ps:SecretNumInRequestMessage"/>
+		<variable name="guessNumIn"
+				  messgaeType="ps:guessedNumInRequestMessage" />
+
+		<!-- Output for service2-->
+		<variable name="answer"
+				  messgaeType="ps:answerResponseMessage" />
+
+		<!-- Output from BPEL Process -->
+		<variable name="processResponse"
+				 messageType="ProcessResponseMessage"/>
+	</variables>
+	
+	<!-- main method of the process -->
+	<sequence>
+		<!-- recieve the initial request from the client-->
+		<receive partnerLink="client"
+				 portType="client:minimumNumPT"
+				 operation="BPEL_Process"
+				 variable="minimumNum"
+				 createInstance="yes" />
+
+		<recieve partnerLink="client"
+				 portType="client:minimumNumPT"
+				 operation="BPEL_Process"
+				 variable="maximumNum"
+				 createInstance="yes" />
+		
+		<!-- Prepare Input for service1 -->
+		<assign>
+			<copy>
+				<from variable="minimunNum" part="num"/>
+				<to varibale="minimumNumIn" part="num"/>	
+			</copy>
+		</assign>
+
+		<assign>
+			<copy>
+				<from variable="maximumNum" part="num"/>
+				<to variable="maximumNumIn" part="num"/>
+			</copy>
+		</assign>
+		
+		<!-- Invoke service1 -->
+		<invoke partnerLink ="SecretNum"
+				portType="ps:secretNumSoap"
+				operation="SecretNum"
+				inputvariable="minimumNumIn"
+				inputvariable2="maximunNumIn"
+				outputvariable="SecretNumOut" />
+
+		<while>
+			<condition>bpws:getVariableData('answer','ps:string') != "correct"</condition>
+			<!-- Recieve the guess from the client -->
+			<receive partnerLink="client"
+			 portType="client:guessPT"
+			 operation="BPEL_Process"
+			 variable="guessedNum"
+			 createInstance="yes" />
+
+			<!-- Prepare Input for service2 -->
+			<assign>
+				<copy>
+					<from variable="SecretNumOut" part="num" />
+					<to variable="SecretNumIn" part="num" />
+				</copy>
+			</assign>
+			<assign>
+				<copy>
+					<from variable="guessedNum" part="num" />
+					<to variable="guessNumIn" part="num" />
+				</copy>
+			</assign>
+			
+			<!-- Invoke service2 -->
+			<invoke partnerLink ="numberCheck"
+			portType="ps:numberCheckREST"
+			operation="numberCheck"
+			inputvariable="SecretNumIn"
+			inputvariable2="guessNumIn"
+			outputvariable="answer" />
+		</while>
+		
+		<!-- Prepare process response -->
+		<assign>
+			<from variable="answer" />
+			<to variable="processResponse" />
+		</assign>
+		
+		<!-- Send Responce to the client -->
+		<reply partnerLink="client"
+			   portType="ps:clientPT"
+			   operation="BPEL_Process"
+			   variable="processResponse" />
+	</sequence>
+</process>

@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<this:checkNumber this:EndpointConfigurationName="BasicHttpBinding_IService1" mva:VisualBasic.Settings="Assembly references and imported namespaces serialized as XML namespaces" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:am="clr-namespace:Assignment3_WorkflowConsoleApp.MyService;assembly=Assignment3_WorkflowConsoleApp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null" xmlns:am1="clr-namespace:Assignment3_WorkflowConsoleApp.MyService;assembly=Assignment3_WorkflowConsoleApp" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:p="http://tempuri.org/" xmlns:p1="http://schemas.microsoft.com/netfx/2009/xaml/servicemodel" xmlns:sads="http://schemas.microsoft.com/netfx/2010/xaml/activities/debugger" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:sc="clr-namespace:System.ComponentModel;assembly=System" xmlns:this="clr-namespace:Assignment3_WorkflowConsoleApp.MyService.Activities;assembly=Assignment3_WorkflowConsoleApp" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <this:checkNumber.Implementation>
+    <Sequence>
+      <Sequence.Variables>
+        <x:Reference>__ReferenceID1</x:Reference>
+        <x:Reference>__ReferenceID2</x:Reference>
+      </Sequence.Variables>
+      <p1:Send x:Name="__ReferenceID0" Action="http://tempuri.org/IService1/checkNumber" OperationName="checkNumber" ServiceContractName="p:IService1">
+        <p1:Send.CorrelationInitializers>
+          <p1:RequestReplyCorrelationInitializer>
+            <p1:RequestReplyCorrelationInitializer.CorrelationHandle>
+              <InArgument x:TypeArguments="p1:CorrelationHandle">
+                <VariableValue x:TypeArguments="p1:CorrelationHandle">
+                  <VariableValue.Variable>
+                    <Variable x:TypeArguments="p1:CorrelationHandle" x:Name="__ReferenceID2" />
+                  </VariableValue.Variable>
+                </VariableValue>
+              </InArgument>
+            </p1:RequestReplyCorrelationInitializer.CorrelationHandle>
+          </p1:RequestReplyCorrelationInitializer>
+        </p1:Send.CorrelationInitializers>
+        <p1:SendMessageContent>
+          <InArgument x:TypeArguments="am1:checkNumberRequest">[New Assignment3_WorkflowConsoleApp.MyService.checkNumberRequest() With { .userNum = userNum, .SecretNum = SecretNum }]</InArgument>
+        </p1:SendMessageContent>
+        <p1:Send.EndpointConfigurationName>
+          <PropertyReference x:TypeArguments="x:String" PropertyName="EndpointConfigurationName" />
+        </p1:Send.EndpointConfigurationName>
+      </p1:Send>
+      <p1:ReceiveReply Request="{x:Reference __ReferenceID0}" Action="http://tempuri.org/IService1/checkNumberResponse">
+        <p1:ReceiveMessageContent>
+          <OutArgument x:TypeArguments="am1:checkNumberResponse">
+            <VariableReference x:TypeArguments="am1:checkNumberResponse">
+              <VariableReference.Variable>
+                <Variable x:TypeArguments="am1:checkNumberResponse" x:Name="__ReferenceID1" Name="tempResult_753ce52269a44567972883b10c4e8795" />
+              </VariableReference.Variable>
+            </VariableReference>
+          </OutArgument>
+        </p1:ReceiveMessageContent>
+      </p1:ReceiveReply>
+      <Assign>
+        <Assign.To>
+          <OutArgument x:TypeArguments="x:String">[checkNumberResult]</OutArgument>
+        </Assign.To>
+        <Assign.Value>
+          <InArgument x:TypeArguments="x:String">[tempResult_753ce52269a44567972883b10c4e8795.checkNumberResult]</InArgument>
+        </Assign.Value>
+      </Assign>
+      <sads:DebugSymbol.Symbol>d9MBQzpcVXNlcnNcQ09EcG9cT25lRHJpdmVcRG9jdW1lbnRzXENTRTQ0NlxBc3NpZ25tZW50M1xBc3NpZ25tZW50M19Xb3JrZmxvd0NvbnNvbGVBcHBcQXNzaWdubWVudDNfV29ya2Zsb3dDb25zb2xlQXBwXENvbm5lY3RlZCBTZXJ2aWNlc1xNeVNlcnZpY2VcQXNzaWdubWVudDNfV29ya2Zsb3dDb25zb2xlQXBwLk15U2VydmljZS5JU2VydmljZTEuY2hlY2tOdW1iZXIueGFtbAklA1MOAgEBKgU+DwIBCj8FSRcCAQdKBVEOAgECOT45tQECAQwvDzMfAgELQgtGHwIBCU8wT28CAQVMMUxEAgED</sads:DebugSymbol.Symbol>
+    </Sequence>
+  </this:checkNumber.Implementation>
+</this:checkNumber>
